@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goli News Admin - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin-style.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .login-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+        }
+        
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-logo h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2rem;
+            color: #1d3557;
+            margin: 0;
+        }
+        
+        .login-logo h1 span {
+            color: #e63946;
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            color: #1d3557;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #457b9d;
+            outline: none;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #e63946;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-login:hover {
+            background-color: #c1121f;
+        }
+        
+        .btn-login:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .forgot-password {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .forgot-password a {
+            color: #457b9d;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password a:hover {
+            color: #1d3557;
+            text-decoration: underline;
+        }
+        
+        .alert {
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+        }
+        
+        .alert-warning {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+        
+        .alert-success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.2);
+        }
+        
+        .countdown {
+            font-weight: bold;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 0;
+            font-size: 16px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">
+            <h1>Goli <span>News</span> Admin</h1>
+        </div>
+        <div class="login-form">
+            <h2>Sign In to Dashboard</h2>
+            
+            <!-- Alert Messages -->
+            <div id="login-alert" class="alert alert-danger"></div>
+            <div id="lockout-alert" class="alert alert-warning">
+                Too many failed attempts. Login locked for <span id="countdown" class="countdown">3:00</span> minutes.
+            </div>
+            <div id="success-alert" class="alert alert-success">
+                Login successful! Redirecting to dashboard...
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-with-icon">
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                        <button type="button" id="password-toggle" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-me" name="remember-me">
+                    <label for="remember-me">Keep me logged in for 30 days</label>
+                </div>
+                <button type="submit" id="login-button" class="btn-login">Login</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#" id="forgot-password-link">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if already logged in
+            if (isLoggedIn()) {
+                window.location.href = 'admin-dashboard.html';
+                return;
+            }
+            
+            // Elements
+            const loginForm = document.getElementById('login-form');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const rememberMeCheckbox = document.getElementById('remember-me');
+            const loginButton = document.getElementById('login-button');
+            const loginAlert = document.getElementById('login-alert');
+            const lockoutAlert = document.getElementById('lockout-alert');
+            const successAlert = document.getElementById('success-alert');
+            const countdownElement = document.getElementById('countdown');
+            const passwordToggle = document.getElementById('password-toggle');
+            const forgotPasswordLink = document.getElementById('forgot-password-link');
+            
+            // Login credentials (in a real app, this would be verified against a database)
+            const VALID_USERNAME = 'Golinews01@golinews.com';
+            const VALID_PASSWORD = 'Sokhal01@';
+            
+            // Login attempts tracking
+            const MAX_ATTEMPTS = 5;
+            const LOCKOUT_TIME = 3 * 60; // 3 minutes in seconds
+            let loginAttempts = 0;
+            let lockoutTimer;
+            let countdownInterval;
+            
+            // Check if user is locked out
+            checkLockoutStatus();
+            
+            // Form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate inputs
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value;
+                const rememberMe = rememberMeCheckbox.checked;
+                
+                // Hide previous alerts
+                hideAllAlerts();
+                
+                // Check if locked out
+                if (isLockedOut()) {
+                    showLockoutAlert();
+                    return;
+                }
+                
+                // Authenticate
+                if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+                    // Successful login
+                    handleSuccessfulLogin(username, rememberMe);
+                } else {
+                    // Failed login
+                    handleFailedLogin();
+                }
+            });
+            
+            // Password visibility toggle
+            passwordToggle.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Change icon based on password visibility
+                const icon = this.querySelector('i');
+                if (type === 'password') {
+                    icon.className = 'fas fa-eye';
+                } else {
+                    icon.className = 'fas fa-eye-slash';
+                }
+            });
+            
+            // Forgot password link
+            forgotPasswordLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Please contact the system administrator to reset your password.');
+            });
+            
+            // Functions
+            function handleSuccessfulLogin(username, rememberMe) {
+                // Reset attempts
+                loginAttempts = 0;
+                localStorage.removeItem('loginAttempts');
+                localStorage.removeItem('lockoutUntil');
+                
+                // Set authentication token and session data
+                const token = generateToken();
+                const expiryHours = rememberMe ? 24 * 30 : 24; // 24 hours or 30 days
+                const expiryTime = Date.now() + (expiryHours * 60 * 60 * 1000);
+                
+                // Store auth data in localStorage
+                localStorage.setItem('authToken', token);
+                localStorage.setItem('authExpiry', expiryTime);
+                localStorage.setItem('userData', JSON.stringify({ username }));
+                
+                // Show success message
+                showAlert(successAlert);
+                
+                // Disable form
+                toggleFormDisabled(true);
+                
+                // Get redirect URL from query parameter, if any
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectPage = urlParams.get('redirect');
+                
+                // Redirect to dashboard or specified page
+                setTimeout(function() {
+                    window.location.href = redirectPage || 'admin-dashboard.html';
+                }, 1500);
+            }
+            
+            // Generate a random token (for demo purposes)
+            function generateToken() {
+                return Math.random().toString(36).substring(2, 15) + 
+                       Math.random().toString(36).substring(2, 15);
+            }
+            
+            function handleFailedLogin() {
+                // Increment attempts
+                loginAttempts++;
+                localStorage.setItem('loginAttempts', loginAttempts);
+                
+                // Check if should lock
+                if (loginAttempts >= MAX_ATTEMPTS) {
+                    lockAccount();
+                } else {
+                    // Show error with remaining attempts
+                    const remaining = MAX_ATTEMPTS - loginAttempts;
+                    loginAlert.textContent = `Invalid username or password. ${remaining} attempt${remaining !== 1 ? 's' : ''} remaining.`;
+                    showAlert(loginAlert);
+                }
+            }
+            
+            function lockAccount() {
+                const lockoutUntil = Date.now() + (LOCKOUT_TIME * 1000);
+                localStorage.setItem('lockoutUntil', lockoutUntil);
+                
+                showLockoutAlert();
+                startCountdown(LOCKOUT_TIME);
+                toggleFormDisabled(true);
+                
+                // Set timer to enable form after lockout period
+                lockoutTimer = setTimeout(function() {
+                    toggleFormDisabled(false);
+                    hideAllAlerts();
+                    
+                    // Reset attempts
+                    loginAttempts = 0;
+                    localStorage.setItem('loginAttempts', loginAttempts);
+                    localStorage.removeItem('lockoutUntil');
+                    
+                    clearInterval(countdownInterval);
+                }, LOCKOUT_TIME * 1000);
+            }
+            
+            function isLoggedIn() {
+                const authToken = localStorage.getItem('authToken');
+                const authExpiry = localStorage.getItem('authExpiry');
+                
+                if (!authToken || !authExpiry) {
+                    return false;
+                }
+                
+                return parseInt(authExpiry) > Date.now();
+            }
+            
+            function isLockedOut() {
+                const lockoutUntil = localStorage.getItem('lockoutUntil');
+                return lockoutUntil && parseInt(lockoutUntil) > Date.now();
+            }
+            
+            function checkLockoutStatus() {
+                // Get stored attempts
+                const storedAttempts = localStorage.getItem('loginAttempts');
+                if (storedAttempts) {
+                    loginAttempts = parseInt(storedAttempts);
+                }
+                
+                // Check if locked out
+                if (isLockedOut()) {
+                    const lockoutUntil = parseInt(localStorage.getItem('lockoutUntil'));
+                    const remainingTime = Math.ceil((lockoutUntil - Date.now()) / 1000);
+                    
+                    if (remainingTime > 0) {
+                        showLockoutAlert();
+                        startCountdown(remainingTime);
+                        toggleFormDisabled(true);
+                        
+                        // Set timer to enable form after remaining lockout time
+                        lockoutTimer = setTimeout(function() {
+                            toggleFormDisabled(false);
+                            hideAllAlerts();
+                            
+                            // Reset attempts
+                            loginAttempts = 0;
+                            localStorage.setItem('loginAttempts', loginAttempts);
+                            localStorage.removeItem('lockoutUntil');
+                            
+                            clearInterval(countdownInterval);
+                        }, remainingTime * 1000);
+                    } else {
+                        // Lockout expired
+                        localStorage.removeItem('lockoutUntil');
+                    }
+                }
+            }
+            
+            function startCountdown(seconds) {
+                updateCountdownDisplay(seconds);
+                
+                clearInterval(countdownInterval);
+                countdownInterval = setInterval(function() {
+                    seconds--;
+                    updateCountdownDisplay(seconds);
+                    
+                    if (seconds <= 0) {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+            }
+            
+            function updateCountdownDisplay(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                countdownElement.textContent = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+            }
+            
+            function toggleFormDisabled(disabled) {
+                usernameInput.disabled = disabled;
+                passwordInput.disabled = disabled;
+                rememberMeCheckbox.disabled = disabled;
+                loginButton.disabled = disabled;
+            }
+            
+            function showAlert(alertElement) {
+                // Hide all alerts first
+                hideAllAlerts();
+                
+                // Show the specified alert
+                alertElement.style.display = 'block';
+            }
+            
+            function hideAllAlerts() {
+                loginAlert.style.display = 'none';
+                lockoutAlert.style.display = 'none';
+                successAlert.style.display = 'none';
+            }
+            
+            function showLockoutAlert() {
+                showAlert(lockoutAlert);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Goli News</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="uploads/favicon.ico" type="image/x-icon">
+</head>
+<body class="search-page">
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <div class="date-time">
+                        <i class="far fa-calendar-alt"></i> <span id="current-date"></span>
+                    </div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="main-header">
+                <a href="index.html" class="logo">
+                    Goli <span>News</span>
+                </a>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="main-nav" id="main-nav">
+                    <ul id="main-menu">
+                        <!-- Main navigation items will be loaded dynamically -->
+                        <li><a href="index.html">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <nav class="category-nav">
+            <div class="container">
+                <ul id="category-menu">
+                    <!-- Category navigation items will be loaded dynamically -->
+                    <li><a href="index.html">Latest</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breaking News Section -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="ticker-wrap">
+                <div class="ticker-label">Breaking News</div>
+                <div class="ticker">
+                    <div class="ticker-content" id="breaking-news-ticker">
+                        <!-- Breaking news items will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs container">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>Search Results</li>
+        </ul>
+    </div>
+
+    <!-- Search Header -->
+    <div class="search-header container">
+        <h1 class="search-title">Search Results for "<span id="search-query"></span>"</h1>
+        <div class="search-stats">
+            <span><i class="fas fa-search"></i> <span id="results-count">0</span> results found</span>
+        </div>
+        <form class="page-search-form" id="page-search-form">
+            <input type="text" id="search-input-page" placeholder="Search again..." required>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+
+    <!-- Search Results -->
+    <div class="search-results container">
+        <div id="results-loading" class="loading-container">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Searching...</p>
+        </div>
+        
+        <div id="search-results-container">
+            <!-- Search results will be loaded dynamically -->
+        </div>
+        
+        <!-- No Results -->
+        <div class="no-results" id="no-results" style="display: none;">
+            <div class="no-results-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3>No Results Found</h3>
+            <p>We couldn't find any results matching your search. Please try again with different keywords.</p>
+            
+            <div class="search-suggestions">
+                <h4>Search Suggestions:</h4>
+                <ul>
+                    <li>Check your spelling</li>
+                    <li>Try more general keywords</li>
+                    <li>Try different keywords</li>
+                    <li>Try fewer keywords</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <!-- Pagination controls will be added here -->
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
+                <p class="newsletter-text">Get the latest news and updates delivered straight to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        Goli <span>News</span>
+                    </div>
+                    <p class="footer-about">Goli News delivers the latest breaking news and information on the latest top stories, weather, business, entertainment, politics, and more.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Categories</h3>
+                    <ul class="footer-links" id="footer-categories">
+                        <!-- Footer categories will be loaded dynamically -->
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Useful Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="advertise.html">Advertise With Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Contact Info</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="contact-address">123 News Street, Media City, New York, USA</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span id="contact-phone">+1 234 567 8901</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span id="contact-email">info@golinews.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© <span id="current-year"></span> Goli News. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-container">
+            <form class="search-form" id="search-form" action="search.html" method="get">
+                <input type="text" class="search-input" placeholder="Search for news..." id="search-input" name="q">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <button class="search-close" id="search-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/news-service.js"></script>
+    <script src="js/category-service.js"></script>
+</body>
+</html>

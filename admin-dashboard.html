@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Goli News Admin</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/admin-style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="uploads/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="admin-dashboard.html" class="sidebar-brand">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Goli News</span>
+                </a>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="admin-dashboard.html" class="sidebar-menu-item active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                
+                <div class="sidebar-menu-header">Content Management</div>
+                
+                <a href="admin/articles.php" class="sidebar-menu-item">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Articles</span>
+                </a>
+                
+                <a href="admin/categories.php" class="sidebar-menu-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Categories</span>
+                </a>
+                
+                <a href="admin/media.php" class="sidebar-menu-item">
+                    <i class="fas fa-images"></i>
+                    <span>Media Library</span>
+                </a>
+
+                <a href="admin/breaking-news.php" class="sidebar-menu-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>Breaking News</span>
+                </a>
+                
+                <div class="sidebar-menu-header">Settings</div>
+                
+                <a href="admin/profile.php" class="sidebar-menu-item">
+                    <i class="fas fa-user"></i>
+                    <span>My Profile</span>
+                </a>
+                
+                <a href="admin/site-settings.php" class="sidebar-menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Site Settings</span>
+                </a>
+                
+                <a href="#" class="sidebar-menu-item" id="logout-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Top Navigation -->
+            <nav class="topnav">
+                <div class="topnav-left">
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2 class="topnav-title">Dashboard</h2>
+                </div>
+                <div class="topnav-right">
+                    <div class="topnav-item">
+                        <a href="index.html" target="_blank" title="View Site">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <div class="topnav-user" id="user-dropdown">
+                        <div class="topnav-user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="topnav-user-info">
+                            <span class="topnav-user-name" id="user-name">Admin</span>
+                            <span class="topnav-user-role">Administrator</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="admin/profile.php" class="dropdown-item" id="profile-link">
+                                <i class="fas fa-user"></i>
+                                My Profile
+                            </a>
+                            <a href="#" class="dropdown-item" id="logout-dropdown">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content Area -->
+            <div class="content">
+                <!-- Alerts -->
+                <div id="alert-success" class="alert alert-success" style="display: none;"></div>
+                <div id="alert-danger" class="alert alert-danger" style="display: none;"></div>
+                <div id="alert-info" class="alert alert-info" style="display: none;"></div>
+                
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">Dashboard</h1>
+                    <p class="page-subtitle">Welcome to Goli News Admin Panel. Here's an overview of your website.</p>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <a href="admin/article-edit.php" class="quick-action">
+                        <div class="quick-action-icon article">
+                            <i class="fas fa-pen"></i>
+                        </div>
+                        <div class="quick-action-content">
+                            <h4>New Article</h4>
+                            <p>Create a new article</p>
+                        </div>
+                    </a>
+                    <a href="admin/categories.php?action=new" class="quick-action">
+                        <div class="quick-action-icon category">
+                            <i class="fas fa-folder-plus"></i>
+                        </div>
+                        <div class="quick-action-content">
+                            <h4>New Category</h4>
+                            <p>Add a new category</p>
+                        </div>
+                    </a>
+                    <a href="admin/media.php" class="quick-action">
+                        <div class="quick-action-icon media">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <div class="quick-action-content">
+                            <h4>Upload Media</h4>
+                            <p>Add images or videos</p>
+                        </div>
+                    </a>
+                    <a href="admin/site-settings.php" class="quick-action">
+                        <div class="quick-action-icon settings">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <div class="quick-action-content">
+                            <h4>Site Settings</h4>
+                            <p>Configure your website</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stat-cards">
+                    <div class="stat-card">
+                        <div class="stat-card-icon primary">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-card-content">
+                            <h3 id="article-count">0</h3>
+                            <p>Total Articles</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon success">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="stat-card-content">
+                            <h3 id="category-count">0</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon warning">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <div class="stat-card-content">
+                            <h3 id="media-count">0</h3>
+                            <p>Media Files</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon info">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-card-content">
+                            <h3 id="view-count">0</h3>
+                            <p>Page Views</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Sections -->
+                <div class="dashboard-sections">
+                    <!-- Recent Articles -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Recent Articles</h3>
+                            <a href="admin/articles.php" class="btn btn-primary">
+                                <i class="fas fa-list"></i> View All
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recent-articles-table">
+                                        <tr>
+                                            <td colspan="5" class="text-center">Loading recent articles...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Popular Categories -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Popular Categories</h3>
+                            <a href="admin/categories.php" class="btn btn-primary">
+                                <i class="fas fa-tags"></i> Manage
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div id="popular-categories-loading" class="text-center">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Loading categories...</p>
+                            </div>
+                            <div class="categories-list" id="popular-categories">
+                                <!-- Popular categories will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/admin.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            checkAuth();
+            
+            // Load dashboard data
+            loadDashboardData();
+            
+            // Toggle mobile menu
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            
+            if (menuToggle && sidebar && mainContent) {
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    mainContent.classList.toggle('sidebar-collapsed');
+                });
+            }
+            
+            // Toggle user dropdown
+            const userDropdown = document.getElementById('user-dropdown');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            
+            if (userDropdown && dropdownMenu) {
+                userDropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (dropdownMenu.classList.contains('active') && !userDropdown.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Logout functionality
+            const logoutLinks = document.querySelectorAll('#logout-link, #logout-dropdown');
+            logoutLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    logout();
+                });
+            });
+            
+            // Check authentication
+            function checkAuth() {
+                const authToken = sessionStorage.getItem('authToken') || localStorage.getItem('authToken');
+                const authExpiry = sessionStorage.getItem('authExpiry') || localStorage.getItem('authExpiry');
+                const userData = sessionStorage.getItem('userData') || localStorage.getItem('userData');
+                
+                // If no token or expiry, redirect to login
+                if (!authToken || !authExpiry) {
+                    window.location.href = 'admin-login.html';
+                    return;
+                }
+                
+                // Check if token has expired
+                if (parseInt(authExpiry) < Date.now()) {
+                    logout();
+                    return;
+                }
+                
+                // Update user name
+                if (userData) {
+                    try {
+                        const user = JSON.parse(userData);
+                        document.getElementById('user-name').textContent = user.name || 'Admin';
+                    } catch (error) {
+                        console.error('Error parsing user data:', error);
+                    }
+                }
+            }
+            
+            // Logout function
+            function logout() {
+                // Clear session data
+                sessionStorage.removeItem('authToken');
+                sessionStorage.removeItem('authExpiry');
+                sessionStorage.removeItem('userData');
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('authExpiry');
+                localStorage.removeItem('userData');
+                
+                // Redirect to login page
+                window.location.href = 'admin-login.html';
+            }
+            
+            // Load dashboard data
+            async function loadDashboardData() {
+                try {
+                    // Fetch dashboard statistics
+                    const statsResponse = await fetch('api/dashboard-stats.php', {
+                        headers: {
+                            'Authorization': 'Bearer ' + (sessionStorage.getItem('authToken') || localStorage.getItem('authToken'))
+                        }
+                    });
+                    const statsData = await statsResponse.json();
+                    
+                    if (statsData.success) {
+                        // Update statistics
+                        document.getElementById('article-count').textContent = statsData.stats.articles.toLocaleString();
+                        document.getElementById('category-count').textContent = statsData.stats.categories.toLocaleString();
+                        document.getElementById('media-count').textContent = statsData.stats.media.toLocaleString();
+                        document.getElementById('view-count').textContent = statsData.stats.views.toLocaleString();
+                    }
+                    
+                    // Fetch recent articles
+                    const articlesResponse = await fetch('api/recent-articles.php', {
+                        headers: {
+                            'Authorization': 'Bearer ' + (sessionStorage.getItem('authToken') || localStorage.getItem('authToken'))
+                        }
+                    });
+                    const articlesData = await articlesResponse.json();
+                    
+                    if (articlesData.success) {
+                        renderRecentArticles(articlesData.articles);
+                    }
+                    
+                    // Fetch popular categories
+                    const categoriesResponse = await fetch('api/popular-categories.php', {
+                        headers: {
+                            'Authorization': 'Bearer ' + (sessionStorage.getItem('authToken') || localStorage.getItem('authToken'))
+                        }
+                    });
+                    const categoriesData = await categoriesResponse.json();
+                    
+                    if (categoriesData.success) {
+                        renderPopularCategories(categoriesData.categories);
+                    }
+                } catch (error) {
+                    console.error('Error loading dashboard data:', error);
+                    showAlert('danger', 'Error loading dashboard data. Please try again later.');
+                }
+            }
+            
+            // Render recent articles
+            function renderRecentArticles(articles) {
+                const tableBody = document.getElementById('recent-articles-table');
+                
+                if (!tableBody) return;
+                
+                if (articles.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="5" class="text-center">No articles found</td></tr>';
+                    return;
+                }
+                
+                let html = '';
+                
+                articles.forEach(article => {
+                    html += `
+                        <tr>
+                            <td>${article.title}</td>
+                            <td>${article.category_name || 'Uncategorized'}</td>
+                            <td>
+                                <span class="badge badge-${article.status === 'published' ? 'success' : (article.status === 'draft' ? 'warning' : 'info')}">
+                                    ${article.status.charAt(0).toUpperCase() + article.status.slice(1)}
+                                </span>
+                            </td>
+                            <td>${new Date(article.created_at).toLocaleDateString()}</td>
+                            <td>
+                                <div class="table-actions">
+                                    <a href="article.html?id=${article.id}" target="_blank" class="table-action-btn view" title="View">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="admin/article-edit.php?id=${article.id}" class="table-action-btn edit" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0);" class="table-action-btn delete" data-id="${article.id}" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                tableBody.innerHTML = html;
+                
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.table-action-btn.delete').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const articleId = this.getAttribute('data-id');
+                        if (confirm('Are you sure you want to delete this article? This action cannot be undone.')) {
+                            deleteArticle(articleId);
+                        }
+                    });
+                });
+            }
+            
+            // Render popular categories
+            function renderPopularCategories(categories) {
+                const categoriesContainer = document.getElementById('popular-categories');
+                const loadingElement = document.getElementById('popular-categories-loading');
+                
+                if (!categoriesContainer || !loadingElement) return;
+                
+                // Hide loading element
+                loadingElement.style.display = 'none';
+                
+                if (categories.length === 0) {
+                    categoriesContainer.innerHTML = '<p class="text-center">No categories found</p>';
+                    return;
+                }
+                
+                let html = '';
+                
+                categories.forEach(category => {
+                    html += `
+                        <div class="category-item">
+                            <div class="category-name">${category.name}</div>
+                            <div class="category-count">${category.article_count} articles</div>
+                        </div>
+                    `;
+                });
+                
+                categoriesContainer.innerHTML = html;
+            }
+            
+            // Delete article
+            async function deleteArticle(articleId) {
+                try {
+                    const response = await fetch('api/article-delete.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + (sessionStorage.getItem('authToken') || localStorage.getItem('authToken'))
+                        },
+                        body: JSON.stringify({ id: articleId })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        showAlert('success', 'Article deleted successfully');
+                        
+                        // Reload dashboard data
+                        setTimeout(() => {
+                            loadDashboardData();
+                        }, 1000);
+                    } else {
+                        showAlert('danger', data.message || 'Error deleting article');
+                    }
+                } catch (error) {
+                    console.error('Error deleting article:', error);
+                    showAlert('danger', 'Error deleting article. Please try again later.');
+                }
+            }
+            
+            // Show alert
+            function showAlert(type, message) {
+                const alertElement = document.getElementById(`alert-${type}`);
+                
+                if (alertElement) {
+                    alertElement.textContent = message;
+                    alertElement.style.display = 'block';
+                    
+                    // Auto-hide after 5 seconds
+                    setTimeout(() => {
+                        alertElement.style.display = 'none';
+                    }, 5000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Title - Goli News</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="uploads/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <div class="date-time">
+                        <i class="far fa-calendar-alt"></i> <span id="current-date"></span>
+                    </div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="main-header">
+                <a href="index.html" class="logo">
+                    Goli <span>News</span>
+                </a>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="main-nav" id="main-nav">
+                    <ul id="main-menu">
+                        <!-- Main navigation items will be loaded dynamically -->
+                        <li><a href="index.html">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <nav class="category-nav">
+            <div class="container">
+                <ul id="category-menu">
+                    <!-- Category navigation items will be loaded dynamically -->
+                    <li><a href="index.html">Latest</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breaking News Section -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="ticker-wrap">
+                <div class="ticker-label">Breaking News</div>
+                <div class="ticker">
+                    <div class="ticker-content" id="breaking-news-ticker">
+                        <!-- Breaking news items will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs container">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" id="breadcrumb-category">Category</a></li>
+            <li id="breadcrumb-title">Article Title</li>
+        </ul>
+    </div>
+
+    <!-- Article Container -->
+    <div class="article-container container">
+        <!-- Article Main Content -->
+        <main class="article-main">
+            <div id="article-loading" class="loading-container">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading article...</p>
+            </div>
+            
+            <div id="article-content" style="display: none;">
+                <div class="article-category">
+                    <a href="#" id="article-category-link">Category</a>
+                </div>
+                
+                <h1 class="article-title" id="article-title">Article Title</h1>
+                
+                <p class="article-excerpt" id="article-excerpt">Article excerpt will be displayed here.</p>
+                
+                <div class="article-meta">
+                    <div class="article-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name" id="article-author">Author Name</div>
+                            <div class="publish-date" id="article-date">Published Date</div>
+                        </div>
+                    </div>
+                    <div class="article-stats">
+                        <span><i class="fas fa-comments"></i> <span id="comment-count">0</span> Comments</span>
+                        <span><i class="fas fa-eye"></i> <span id="view-count">0</span> Views</span>
+                    </div>
+                </div>
+                
+                <div class="article-featured-image">
+                    <img src="" alt="" id="article-image">
+                    <div class="image-caption" id="image-caption"></div>
+                </div>
+                
+                <div class="social-sharing">
+                    <span>Share this:</span>
+                    <a href="#" class="facebook" id="share-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="twitter" id="share-twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="linkedin" id="share-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="whatsapp" id="share-whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="email" id="share-email"><i class="fas fa-envelope"></i></a>
+                </div>
+                
+                <div class="article-content" id="full-article-content">
+                    <!-- Article content will be loaded here -->
+                </div>
+                
+                <div class="article-tags">
+                    <span>Tags:</span>
+                    <div id="article-tags-container">
+                        <!-- Tags will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="article-navigation" id="article-navigation">
+                    <a href="#" class="prev-article" id="prev-article">
+                        <i class="fas fa-chevron-left"></i>
+                        <div>
+                            <span>Previous Article</span>
+                            <h4>Previous Article Title</h4>
+                        </div>
+                    </a>
+                    <a href="#" class="next-article" id="next-article">
+                        <div>
+                            <span>Next Article</span>
+                            <h4>Next Article Title</h4>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                
+                <div class="article-author-box">
+                    <div class="author-avatar" id="author-avatar-large">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="author-details">
+                        <h3 class="author-name" id="author-name-large">Author Name</h3>
+                        <p class="author-bio" id="author-bio">Author bio will be displayed here if available.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <h3 class="comments-title">Comments <span id="comments-count">(0)</span></h3>
+                
+                <div id="comments-container">
+                    <div class="loading-comments">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading comments...</p>
+                    </div>
+                </div>
+                
+                <div class="comment-form-container">
+                    <h4>Leave a Comment</h4>
+                    <form id="comment-form">
+                        <input type="hidden" name="article_id" id="comment-article-id">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="comment-name">Name*</label>
+                                <input type="text" id="comment-name" name="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment-email">Email* (will not be published)</label>
+                                <input type="email" id="comment-email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="comment-content">Comment*</label>
+                            <textarea id="comment-content" name="content" class="form-control" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-comment">Post Comment</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Article Sidebar -->
+        <aside class="article-sidebar">
+            <!-- Ad Banner -->
+            <div class="sidebar-ad">
+                <p>Advertisement</p>
+            </div>
+            
+            <!-- Related Articles -->
+            <div class="related-articles">
+                <h3 class="section-title">Related Articles</h3>
+                <div id="related-articles-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading related articles...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Popular Tags -->
+            <div class="popular-tags">
+                <h3 class="section-title">Popular Tags</h3>
+                <div class="tags-cloud" id="popular-tags">
+                    <!-- Tags will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Sidebar Newsletter -->
+            <div class="sidebar-newsletter">
+                <h3 class="section-title">Newsletter</h3>
+                <p>Subscribe to our newsletter to get the latest updates directly in your inbox.</p>
+                <form class="sidebar-newsletter-form">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        Goli <span>News</span>
+                    </div>
+                    <p class="footer-about">Goli News delivers the latest breaking news and information on the latest top stories, weather, business, entertainment, politics, and more.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Categories</h3>
+                    <ul class="footer-links" id="footer-categories">
+                        <!-- Footer categories will be loaded dynamically -->
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Useful Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="advertise.html">Advertise With Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Contact Info</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="contact-address">123 News Street, Media City, New York, USA</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span id="contact-phone">+1 234 567 8901</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span id="contact-email">info@golinews.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© <span id="current-year"></span> Goli News. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-container">
+            <form class="search-form" id="search-form" action="search.html" method="get">
+                <input type="text" class="search-input" placeholder="Search for news..." id="search-input" name="q">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <button class="search-close" id="search-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/article.js"></script>
+    <script src="js/news-service.js"></script>
+    <script src="js/category-service.js"></script>
+</body>
+</html>
